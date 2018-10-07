@@ -1,0 +1,41 @@
+{
+	"ImportPath": "SmsBomb",
+	"GoVersion": "go1.9",
+	"GodepVersion": "v80",
+	"Deps": [
+		{
+			"ImportPath": "application",
+			"Rev": "36d8aa08607553d2bad961bf548bd1386c9d5ee0"
+		},
+		{
+			"ImportPath": "application/components",
+			"Rev": "36d8aa08607553d2bad961bf548bd1386c9d5ee0"
+		},
+		{
+			"ImportPath": "application/config",
+			"Rev": "36d8aa08607553d2bad961bf548bd1386c9d5ee0"
+		},
+		{
+			"ImportPath": "github.com/BurntSushi/toml",
+			"Comment": "v0.3.0-7-ga368813",
+			"Rev": "a368813c5e648fee92e5f6c30e3944ff9d5e8895"
+		},
+		{
+			"ImportPath": "github.com/sirupsen/logrus",
+			"Comment": "v1.0.4",
+			"Rev": "d682213848ed68c0a260ca37d6dd5ace8423f5ba"
+		},
+		{
+			"ImportPath": "golang.org/x/crypto/ssh/terminal",
+			"Rev": "0fcca4842a8d74bfddc2c96a073bd2a4d2a7a2e8"
+		},
+		{
+			"ImportPath": "golang.org/x/sys/unix",
+			"Rev": "1792d66dc88e503d3cb2400578221cdf1f7fe26f"
+		},
+		{
+			"ImportPath": "golang.org/x/sys/windows",
+			"Rev": "1792d66dc88e503d3cb2400578221cdf1f7fe26f"
+		}
+	]
+}
