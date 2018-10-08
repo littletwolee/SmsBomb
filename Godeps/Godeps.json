@@ -5,15 +5,15 @@
 	"Deps": [
 		{
 			"ImportPath": "application",
-			"Rev": "36d8aa08607553d2bad961bf548bd1386c9d5ee0"
+			"Rev": "b7f1ec4cd8d9f7f64ceb5d80385ae7e679ec9adf"
 		},
 		{
 			"ImportPath": "application/components",
-			"Rev": "36d8aa08607553d2bad961bf548bd1386c9d5ee0"
+			"Rev": "b7f1ec4cd8d9f7f64ceb5d80385ae7e679ec9adf"
 		},
 		{
 			"ImportPath": "application/config",
-			"Rev": "36d8aa08607553d2bad961bf548bd1386c9d5ee0"
+			"Rev": "b7f1ec4cd8d9f7f64ceb5d80385ae7e679ec9adf"
 		},
 		{
 			"ImportPath": "github.com/BurntSushi/toml",
