@@ -15,7 +15,7 @@ type App struct {
 	Logger     *components.Logger
 	config     map[string]interface{}
 	env        string
-	wg         *sync.WaitGroup
+	Wg         *sync.WaitGroup
 	components map[string]interface{}
 }
 
@@ -24,6 +24,7 @@ func NewApp(name string, configPath string) *App {
 	app := &App{
 		appName: name,
 		Logger:  components.GetLogger(),
+		Wg:      &sync.WaitGroup{},
 		config:  config.GetConfig(configPath),
 	}
 	value, ok := app.config["env"]
@@ -39,9 +40,19 @@ func NewApp(name string, configPath string) *App {
 func (a *App) GetEnv() string {
 	return a.env
 }
+
 func (a *App) GetAppName() string {
 	return a.appName
 }
+
 func (a *App) GetConfig() map[string]interface{} {
 	return a.config
+}
+
+func (a *App) Run() {
+
+}
+
+func (a *App) Register() {
+
 }

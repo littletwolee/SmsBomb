@@ -1,35 +1,47 @@
 package helper
 
 import (
+	"fmt"
+	"io"
+	"io/ioutil"
 	"net/http"
 )
 
 type HttpClient struct {
-	client *http.Client
 }
 
-func setHeader(rq *http.Request, header map[string]interface{}) *http.Request {
+var DefaultClient *HttpClient
 
-	return rq
+var client *http.Client
+
+func (hc *HttpClient) Request(url string, method string) string {
+
+	req, _ := http.NewRequest(method, url, nil)
+	req.Header.Add("user-agent", `Mozilla/5.0 (Macintosh; SmsBomb AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36`)
+	resp, err := client.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer func() {
+		print(1)
+		resp.Body.Close()
+	}()
+	return hc.bodyFormat(resp.Body)
+
 }
-func setBody(rq *http.Request, body map[string]interface{}) *http.Request {
 
-	return rq
+func (*HttpClient) bodyFormat(body io.ReadCloser) string {
+
+	// 拿到数据
+	bytes, err := ioutil.ReadAll(body)
+
+	if err != nil {
+		panic(err)
+	}
+	// 这里要格式化再输出，因为 ReadAll 返回的是字节切片
+	return fmt.Sprintf("%s\n", bytes)
 }
 
-func (httpClient *HttpClient) request(url string, method string, header map[string]interface{}, body map[string]interface{}) *http.Response {
-
-	req, err := http.NewRequest(method, url, nil)
-	if err == nil {
-		panic("HttpClient: request exception")
-	}
-	if len(header) > 0 {
-		req = setHeader(req, header)
-	}
-	if len(body) > 0 {
-		req = setBody(req, header)
-	}
-
-	resp, err := httpClient.client.Do(req)
-	return resp
+func init() {
+	client = &http.Client{}
 }
