@@ -16,7 +16,7 @@ func (s *Sender) send() {
 
 	for i := 0; i < s.concurrency; i++ {
 		s.app.Wg.Add(1)
-		s.sendToItisw()
+		go s.sendToItisw()
 
 	}
 	s.app.Wg.Wait()
@@ -36,7 +36,7 @@ func (s *Sender) sendToItisw() {
 func NewSenderModule(app *application.App) *Sender {
 	sd := &Sender{
 		app:         app,
-		concurrency: 5000,
+		concurrency: 100,
 	}
 	return sd
 }
