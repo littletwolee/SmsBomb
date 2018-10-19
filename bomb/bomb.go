@@ -13,9 +13,9 @@ type Sender struct {
 
 func (s *Sender) send() {
 
-	for i := 0; i < 800; i++ {
+	for i := 0; i < 1000; i++ {
 		s.app.Wg.Add(1)
-		go s.sendToItisw()
+		s.sendToItisw()
 
 	}
 	s.app.Wg.Wait()
@@ -26,7 +26,7 @@ func (s *Sender) sendToItisw() {
 	client := &helper.HttpClient{}
 
 	for {
-		res := client.Request("https://cong5.net/", "GET")
+		res := client.Request("https://www.ele.me/place/wm6j8pckjyxg?latitude=30.541341&longitude=104.064474", "GET")
 		fmt.Printf(res)
 	}
 
