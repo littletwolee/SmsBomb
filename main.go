@@ -11,7 +11,7 @@ var app *application.App
 
 func main() {
 
-	app = application.NewApp("test", "/tmp/config.toml")
+	app = application.NewApp("test", "/Users/wuqimeng/go/go_project/src/SmsBomb/config.toml")
 	bombModule := bomb.NewSenderModule(app)
 	bombModule.Run()
 }
