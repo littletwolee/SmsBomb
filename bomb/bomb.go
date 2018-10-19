@@ -26,7 +26,7 @@ func (s *Sender) sendToItisw() {
 	client := &helper.HttpClient{}
 
 	for {
-		res := client.Request("https://itisw.com", "GET")
+		res := client.Request("https://cong5.net/", "GET")
 		fmt.Printf(res)
 	}
 

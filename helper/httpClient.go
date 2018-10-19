@@ -5,6 +5,7 @@ import (
 	"io"
 	"io/ioutil"
 	"net/http"
+	"time"
 )
 
 type HttpClient struct {
@@ -17,16 +18,17 @@ var client *http.Client
 func (hc *HttpClient) Request(url string, method string) string {
 
 	req, _ := http.NewRequest(method, url, nil)
+
 	req.Header.Add("user-agent", `Mozilla/5.0 (Macintosh; SmsBomb AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36`)
 	resp, err := client.Do(req)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		return "error"
 	}
 	defer func() {
-		print(1)
 		resp.Body.Close()
 	}()
-	return hc.bodyFormat(resp.Body)
+	return "1"
 
 }
 
@@ -43,5 +45,7 @@ func (*HttpClient) bodyFormat(body io.ReadCloser) string {
 }
 
 func init() {
-	client = &http.Client{}
+	client = &http.Client{
+		Timeout: time.Duration(60 * time.Second),
+	}
 }
