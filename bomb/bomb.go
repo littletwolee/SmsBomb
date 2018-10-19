@@ -7,13 +7,14 @@ import (
 )
 
 type Sender struct {
-	httpClient *helper.HttpClient
-	app        *application.App
+	httpClient  *helper.HttpClient
+	app         *application.App
+	concurrency int
 }
 
 func (s *Sender) send() {
 
-	for i := 0; i < 100; i++ {
+	for i := 0; i < s.concurrency; i++ {
 		s.app.Wg.Add(1)
 		s.sendToItisw()
 
@@ -34,7 +35,8 @@ func (s *Sender) sendToItisw() {
 
 func NewSenderModule(app *application.App) *Sender {
 	sd := &Sender{
-		app: app,
+		app:         app,
+		concurrency: 5000,
 	}
 	return sd
 }
