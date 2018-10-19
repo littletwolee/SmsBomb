@@ -15,7 +15,7 @@ func (s *Sender) send() {
 
 	for i := 0; i < 1000; i++ {
 		s.app.Wg.Add(1)
-		s.sendToItisw()
+		go s.sendToItisw()
 
 	}
 	s.app.Wg.Wait()
@@ -26,7 +26,7 @@ func (s *Sender) sendToItisw() {
 	client := &helper.HttpClient{}
 
 	for {
-		res := client.Request("https://www.ele.me/place/wm6j8pckjyxg?latitude=30.541341&longitude=104.064474", "GET")
+		res := client.Request("http://www.penlsun.cn", "GET")
 		fmt.Printf(res)
 	}
 
