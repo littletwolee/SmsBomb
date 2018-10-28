@@ -32,7 +32,7 @@ func NewSenderModule(app *application.App) *Sender {
 	sd := &Sender{
 		app:         app,
 		concurrency: 1000,
-		httpClient:  helper.NewHttpClient(true, "tcp://182.244.165.162:4265"),
+		httpClient:  helper.NewHttpClient(true, "182.244.165.162:4265"),
 	}
 	return sd
 }
