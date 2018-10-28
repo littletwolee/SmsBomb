@@ -50,10 +50,12 @@ func NewHttpClient(useProxy bool, args ...interface{}) *HttpClient {
 	if !useProxy {
 		return client
 	}
-	proxyUrl, err := url.Parse("123")
+
+	proxyUrl, err := url.Parse(args[0].(string))
 	if err != nil {
 		panic(err)
 	}
+
 	client.c.Transport = &http.Transport{
 		Proxy: http.ProxyURL(proxyUrl),
 	}

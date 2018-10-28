@@ -31,8 +31,8 @@ func (s *Sender) sendToItisw() {
 func NewSenderModule(app *application.App) *Sender {
 	sd := &Sender{
 		app:         app,
-		concurrency: 10,
-		httpClient:  helper.NewHttpClient(true, "tcp://127.0.0.1:1080"),
+		concurrency: 1000,
+		httpClient:  helper.NewHttpClient(true, "tcp://182.244.165.162:4265"),
 	}
 	return sd
 }
