@@ -10,17 +10,14 @@ import (
 )
 
 type HttpClient struct {
+	c *http.Client
 }
-
-var DefaultClient *HttpClient
-
-var client *http.Client
 
 func (hc *HttpClient) Request(url string, method string) string {
 
 	req, _ := http.NewRequest(method, url, nil)
 	req.Header.Add("user-agent", `Mozilla/5.0 (Macintosh; SmsBomb AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36`)
-	resp, err := client.Do(req)
+	resp, err := hc.c.Do(req)
 	if err != nil {
 		fmt.Println(err)
 		return "error"
@@ -44,17 +41,21 @@ func (*HttpClient) bodyFormat(body io.ReadCloser) string {
 	return fmt.Sprintf("%s\n", bytes)
 }
 
-func init() {
-
-	proxyUrl, err := url.Parse("tcp://183.163.142.218:4265")
+func NewHttpClient(useProxy bool, args ...interface{}) *HttpClient {
+	client := &HttpClient{
+		c: &http.Client{
+			Timeout: time.Duration(60 * time.Second),
+		},
+	}
+	if !useProxy {
+		return client
+	}
+	proxyUrl, err := url.Parse("123")
 	if err != nil {
 		panic(err)
 	}
-	client = &http.Client{
-
-		Transport: &http.Transport{
-			Proxy: http.ProxyURL(proxyUrl),
-		},
-		Timeout: time.Duration(60 * time.Second),
+	client.c.Transport = &http.Transport{
+		Proxy: http.ProxyURL(proxyUrl),
 	}
+	return client
 }
